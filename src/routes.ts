@@ -6,12 +6,13 @@ import { CreateClientController } from './modules/clients/useCasses/createClient
 import { CreateDeliverymanController } from './modules/deliveryman/useCases/createDeliveryman/CreateDeliverymanController'
 import { CreateDeliveryController } from './modules/deliveries/useCases/createDelivery/CreateDeliveryController'
 import { FindAllAvailableController } from './modules/deliveries/useCases/findAllAvailable/FindAllAvailableController'
-import { UpdateDeliverymanController } from './modules/deliveries/useCases/updateDeliveryman/UpdateDeliverymanController'
+import { UpdateDeliverymanController } from './modules/deliveries/useCases/updateDeliveryman/useCases/UpdateDeliverymanController'
 import { FindAllDeliveriesController } from './modules/clients/useCasses/deliveries/FindAllDeliveriesController'
 import { FindAllDeliveriesDeliverymanController } from './modules/deliveryman/useCases/findAllDeliveries/FindAllDeliveriesDeliverymanController'
 
 import { ensureAuthenticateClient } from './middlewares/ensureAuthenticateClient'
 import { ensureAuthenticateDeliveryman } from './middlewares/ensureAuthenticateDeliveryman'
+import { UpdateEndDateController } from './modules/deliveries/useCases/updateEndDate/UpdateEndDateController'
 
 export const routes = Router()
 
@@ -22,8 +23,9 @@ const authenticateDeliverymanController =
 const createDeliverymanController = new CreateDeliverymanController()
 const createDeliveryController = new CreateDeliveryController()
 const findAllAvailableController = new FindAllAvailableController()
-const updateDeliverymanController = new UpdateDeliverymanController()
 const findAllDeliveriesController = new FindAllDeliveriesController()
+const updateDeliverymanController = new UpdateDeliverymanController()
+const updateEndDateController = new UpdateEndDateController()
 const findAllDeliveriesDeliverymanController =
   new FindAllDeliveriesDeliverymanController()
 
@@ -64,4 +66,10 @@ routes.get(
   '/deliveryman/deliveries',
   ensureAuthenticateDeliveryman,
   findAllDeliveriesDeliverymanController.handle,
+)
+
+routes.put(
+  '/delivery/updateEndDate/:id',
+  ensureAuthenticateDeliveryman,
+  updateEndDateController.handle,
 )
