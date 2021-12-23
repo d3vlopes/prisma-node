@@ -8,6 +8,7 @@ import { CreateDeliveryController } from './modules/deliveries/useCases/createDe
 import { FindAllAvailableController } from './modules/deliveries/useCases/findAllAvailable/FindAllAvailableController'
 
 import { ensureAuthenticateClient } from './middlewares/ensureAuthenticateClient'
+import { ensureAuthenticateDeliveryman } from './middlewares/ensureAuthenticateDeliveryman'
 
 export const routes = Router()
 
@@ -34,4 +35,8 @@ routes.post(
   ensureAuthenticateClient,
   createDeliveryController.handle,
 )
-routes.get('/delivery/available', findAllAvailableController.handle)
+routes.get(
+  '/delivery/available',
+  ensureAuthenticateDeliveryman,
+  findAllAvailableController.handle,
+)
