@@ -1,4 +1,5 @@
-import express from 'express'
+import express, { NextFunction, Request, Response } from 'express'
+import 'express-async-errors'
 
 import { routes } from './routes'
 
@@ -8,9 +9,16 @@ app.use(express.json())
 
 app.use(routes)
 
-app.get('/', (req, res) => {
-  return res.json({
-    message: 'Hello world',
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+  if (error instanceof Error) {
+    return res.status(400).json({
+      message: error.message,
+    })
+  }
+
+  return res.status(500).json({
+    status: 'error',
+    message: 'Internal server error',
   })
 })
 
