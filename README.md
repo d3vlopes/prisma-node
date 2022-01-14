@@ -1,6 +1,6 @@
 
 # Sobre
-Aplicação de entregas, onde temos de um lado o cliente que irá se cadastrar e cadastrar itens para serem entregues e, do outro, o entregador, que poderá pegar ou não determinada entrega para ser realizada.
+API de entregas, onde temos de um lado o cliente que irá se cadastrar e cadastrar itens para serem entregues e, do outro, o entregador, que poderá pegar ou não determinada entrega para ser realizada.
 
 ## Tecnologias e ferramentas utilizadas
 - [Prisma.io](https://www.prisma.io/)
